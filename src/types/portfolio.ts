@@ -41,14 +41,3 @@ export interface SkillCategory {
     useCase: string;
   }[];
 }
-
-export interface TelemetryDataPoint {
-  timestamp: number;
-  speed: number;
-  rpm: number;
-  latencyMs: number;
-  radarDistanceMeters: number;
-  batteryHealth: number;
-  geofenceStatus: 'Secure' | 'Warning' | 'Breach';
-  activeAlerts: string[];
-}

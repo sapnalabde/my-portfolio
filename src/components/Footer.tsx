@@ -48,12 +48,6 @@ export const Footer: React.FC<FooterProps> = ({ onOpenResume, onNavigate }) => {
               Projects
             </button>
             <button
-              onClick={() => onNavigate('telemetry-lab')}
-              className="hover:text-amber-300 transition-colors cursor-pointer"
-            >
-              Telemetry Lab
-            </button>
-            <button
               onClick={() => onNavigate('skills')}
               className="hover:text-amber-300 transition-colors cursor-pointer"
             >

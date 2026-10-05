@@ -5,13 +5,11 @@ import { PERSONAL_INFO } from '../data/portfolioData';
 
 interface HeroProps {
   onExploreProjects: () => void;
-  onOpenTelemetryLab: () => void;
   onOpenResume: () => void;
 }
 
 export const Hero: React.FC<HeroProps> = ({
   onExploreProjects,
-  onOpenTelemetryLab,
   onOpenResume
 }) => {
   const [imgLoaded, setImgLoaded] = useState(true);

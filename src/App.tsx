@@ -10,7 +10,6 @@ import { AboutMeSection } from './components/AboutMeSection';
 import { SkillsSection } from './components/SkillsSection';
 import { ExperienceSection } from './components/ExperienceSection';
 import { ProjectsSection } from './components/ProjectsSection';
-import { TelemetryLab } from './components/TelemetryLab';
 import { EducationSection } from './components/EducationSection';
 import { ContactSection } from './components/ContactSection';
 import { Footer } from './components/Footer';
@@ -38,7 +37,6 @@ export default function App() {
         {/* Hero Section: Socials, "Hi, I'm Sapna Labde", Buttons, 3D Character */}
         <Hero
           onExploreProjects={() => scrollToSection('projects')}
-          onOpenTelemetryLab={() => scrollToSection('telemetry-lab')}
           onOpenResume={() => setIsResumeModalOpen(true)}
         />
 
@@ -54,12 +52,7 @@ export default function App() {
         <ExperienceSection />
 
         {/* My Projects Section */}
-        <ProjectsSection
-          onOpenTelemetryLab={() => scrollToSection('telemetry-lab')}
-        />
-
-        {/* Interactive ADAS Telemetry Workbench */}
-        <TelemetryLab />
+        <ProjectsSection />
 
         {/* Academic Foundations & Education */}
         <EducationSection />

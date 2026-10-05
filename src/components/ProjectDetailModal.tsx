@@ -1,17 +1,15 @@
 import React, { useEffect } from 'react';
-import { X, CheckCircle2, Activity, Calendar, Building, Layers } from 'lucide-react';
+import { X, CheckCircle2, Calendar, Building, Layers } from 'lucide-react';
 import { Project } from '../types/portfolio';
 
 interface ProjectDetailModalProps {
   project: Project | null;
   onClose: () => void;
-  onOpenTelemetryLab?: () => void;
 }
 
 export const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({
   project,
-  onClose,
-  onOpenTelemetryLab
+  onClose
 }) => {
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -100,18 +98,6 @@ export const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({
               <div className="text-xs text-amber-300 font-mono">
                 Production Artifact · Verified Architecture
               </div>
-              {project.id.includes('adas') && onOpenTelemetryLab && (
-                <button
-                  onClick={() => {
-                    onClose();
-                    onOpenTelemetryLab();
-                  }}
-                  className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold text-slate-950 bg-gradient-to-r from-amber-400 to-yellow-400 hover:from-amber-300 hover:to-yellow-300 rounded-lg transition-all shadow-md active:scale-95 cursor-pointer"
-                >
-                  <Activity className="w-3.5 h-3.5" />
-                  <span>Launch Live Simulation</span>
-                </button>
-              )}
             </div>
           </div>
 

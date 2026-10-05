@@ -1,15 +1,11 @@
 import React, { useState } from 'react';
-import { ArrowUpRight, Activity, Cpu } from 'lucide-react';
+import { ArrowUpRight, Cpu } from 'lucide-react';
 import { motion } from 'motion/react';
 import { PROJECTS } from '../data/portfolioData';
 import { Project } from '../types/portfolio';
 import { ProjectDetailModal } from './ProjectDetailModal';
 
-interface ProjectsSectionProps {
-  onOpenTelemetryLab: () => void;
-}
-
-export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onOpenTelemetryLab }) => {
+export const ProjectsSection: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
   const [activeModalProject, setActiveModalProject] = useState<Project | null>(null);
 
@@ -154,42 +150,12 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onOpenTelemetr
           ))}
         </div>
 
-        {/* Live ADAS Telemetry Demonstration Callout with Pulse Animation */}
-        <motion.div 
-          whileHover={{ scale: 1.01 }}
-          className="mt-14 rounded-2xl border border-orange-500/30 bg-gradient-to-r from-orange-950/30 via-[#111726] to-[#0e1424] p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6 text-left shadow-2xl"
-        >
-          <div className="space-y-1.5 max-w-2xl">
-            <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-orange-400">
-              <Activity className="w-4 h-4 animate-pulse" />
-              <span>Interactive Telemetry Demonstration</span>
-            </div>
-            <h3 className="text-xl font-bold text-white">
-              Test Real-Time ADAS Socket.io Ingestion Live
-            </h3>
-            <p className="text-sm text-slate-300 leading-relaxed">
-              Experience the simulated high-frequency CAN-bus data stream, polygon geofence crossing triggers, and 60fps render latency budget directly in your browser.
-            </p>
-          </div>
-
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            onClick={onOpenTelemetryLab}
-            className="flex items-center gap-2 px-6 py-3 text-xs sm:text-sm font-bold text-white bg-gradient-to-r from-orange-500 to-amber-500 hover:brightness-110 rounded-full transition-all cursor-pointer shrink-0 shadow-lg shadow-orange-500/30 active:scale-95 whitespace-nowrap"
-          >
-            <span>Open Telemetry Lab</span>
-            <ArrowUpRight className="w-4 h-4" />
-          </motion.button>
-        </motion.div>
-
       </div>
 
       {/* Case Study Modal */}
       <ProjectDetailModal
         project={activeModalProject}
         onClose={() => setActiveModalProject(null)}
-        onOpenTelemetryLab={onOpenTelemetryLab}
       />
     </section>
   );
