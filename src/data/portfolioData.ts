@@ -1,12 +1,12 @@
 import { Project, WorkExperience, SkillCategory } from '../types/portfolio';
 
 // Local high-fidelity image assets generated for Sapna's portfolio
-import sapnaPortrait from '../assets/images/sapna_portrait_1791203775208.jpg';
-import hero3DImg from '../assets/images/hero_3d_developer_1791205738670.jpg';
-import about3DImg from '../assets/images/about_3d_developer_1791205752043.jpg';
-import adasPortalImg from '../assets/images/adas_portal_ui_1791203792361.jpg';
-import analyticsDashboardImg from '../assets/images/analytics_dashboard_1791203809588.jpg';
-import fullstackPlatformImg from '../assets/images/fullstack_platform_1791203825759.jpg';
+import sapnaPortrait from '../assets/images/sapna_portrait_1791203775208.webp';
+import hero3DImg from '../assets/images/hero_3d_developer_1791205738670.webp';
+import about3DImg from '../assets/images/about_3d_developer_1791205752043.webp';
+import adasPortalImg from '../assets/images/adas_portal_ui_1791203792361.webp';
+import analyticsDashboardImg from '../assets/images/analytics_dashboard_1791203809588.webp';
+import fullstackPlatformImg from '../assets/images/fullstack_platform_1791203825759.webp';
 
 export const PERSONAL_INFO = {
   name: 'Sapna Labde',
