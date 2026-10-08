@@ -13,7 +13,12 @@ export const ContactSection: React.FC = () => {
     message: ''
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState('');
   const [formErrors, setFormErrors] = useState<{ [key: string]: string }>({});
+
+  // Dummy link for Sapna to view saved submissions (key-protected admin view).
+  const VIEW_DATA_URL = '/api/submissions?key=sapna-dev-key';
 
   const handleCopyEmail = () => {
     navigator.clipboard.writeText(PERSONAL_INFO.email);
@@ -36,10 +41,30 @@ export const ContactSection: React.FC = () => {
     return Object.keys(errors).length === 0;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!validate()) return;
-    setIsSubmitted(true);
+
+    setSubmitError('');
+    setIsSubmitting(true);
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formState)
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok || !data.ok) {
+        throw new Error(data.error || 'Something went wrong. Please try again.');
+      }
+      setIsSubmitted(true);
+    } catch (err) {
+      setSubmitError(
+        err instanceof Error ? err.message : 'Could not send your note. Please try again.'
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -163,6 +188,17 @@ export const ContactSection: React.FC = () => {
                   <p className="text-sm text-slate-300 max-w-md mx-auto">
                     Thank you for reaching out, {formState.name}. Sapna will review your message and reply via <span className="text-amber-300 font-medium">{formState.email}</span> shortly.
                   </p>
+                  <p className="text-xs text-slate-500 max-w-md mx-auto">
+                    Owner only ·{' '}
+                    <a
+                      href={VIEW_DATA_URL}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="text-amber-400/80 hover:text-amber-300 underline underline-offset-2"
+                    >
+                      View saved submissions
+                    </a>
+                  </p>
                   <div className="pt-4 flex items-center justify-center gap-3">
                     <button
                       onClick={() => {
@@ -260,12 +296,19 @@ export const ContactSection: React.FC = () => {
                     )}
                   </div>
 
+                  {submitError && (
+                    <p className="text-xs text-rose-400 bg-rose-500/10 border border-rose-500/30 rounded-xl px-3.5 py-2.5">
+                      {submitError}
+                    </p>
+                  )}
+
                   <button
                     type="submit"
-                    className="w-full flex items-center justify-center gap-2 py-3 px-4 text-sm font-bold text-slate-950 bg-gradient-to-r from-amber-400 to-yellow-400 hover:from-amber-300 hover:to-yellow-300 rounded-xl transition-all cursor-pointer shadow-lg shadow-amber-500/20 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-400"
+                    disabled={isSubmitting}
+                    className="w-full flex items-center justify-center gap-2 py-3 px-4 text-sm font-bold text-slate-950 bg-gradient-to-r from-amber-400 to-yellow-400 hover:from-amber-300 hover:to-yellow-300 rounded-xl transition-all cursor-pointer shadow-lg shadow-amber-500/20 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-400 disabled:opacity-60 disabled:cursor-not-allowed"
                   >
                     <Send className="w-4 h-4" />
-                    <span>Send Message to Sapna</span>
+                    <span>{isSubmitting ? 'Sending…' : 'Send Message to Sapna'}</span>
                   </button>
                 </form>
               )}

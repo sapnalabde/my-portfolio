@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Download, Mail, ExternalLink, Github, Linkedin, Twitter, Sparkles } from 'lucide-react';
+import { Download, Mail, ExternalLink, Github, Linkedin, Sparkles } from 'lucide-react';
 import { motion, type Variants } from 'motion/react';
 import { PERSONAL_INFO } from '../data/portfolioData';
 
@@ -41,12 +41,6 @@ export const Hero: React.FC<HeroProps> = ({
       href: PERSONAL_INFO.linkedinUrl,
       bg: 'bg-gradient-to-tr from-rose-500 to-purple-600',
       label: 'LinkedIn'
-    },
-    {
-      icon: <Twitter className="w-4 h-4" />,
-      href: 'https://twitter.com',
-      bg: 'bg-gradient-to-tr from-slate-900 to-cyan-700',
-      label: 'Twitter'
     },
     {
       icon: <Github className="w-4 h-4" />,

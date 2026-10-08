@@ -18,7 +18,7 @@ export const PERSONAL_INFO = {
   phone: '+91-8600825135',
   linkedinUrl: 'https://www.linkedin.com/in/sapna-labde',
   linkedinDisplay: 'in/sapna-labde',
-  githubUrl: 'https://github.com/sapnal1997', // Accessible fallback
+  githubUrl: 'https://github.com/sapnalabde',
   portraitImage: sapnaPortrait,
   hero3DImage: hero3DImg,
   about3DImage: about3DImg,
